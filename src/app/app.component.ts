@@ -34,45 +34,31 @@ export class AppComponent {
   ];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   constructor() {
-    let filter = this.createFilter(this.columns);
-    console.log(filter.prototype);
-    this.dataSource.filterPredicate = filter;
+    this.dataSource.filterPredicate = this.createFilter(this.columns);
   }
   createFilter(columns): (data: any, filter: string) => boolean {
     debugger;
     let filterFunction = function (data, filter): boolean {
       let searchTerms = JSON.parse(filter);
+      console.log(data);
       let retValue = [];
       let i = 0;
       columns
-        .filter((t) => t.header)
+        .filter((z) => z.header != undefined)
+        .map((y) => y.header)
         .forEach((x) => {
-          let key = x.header.toLowerCase();
-
-          retValue[i] =
-            !searchTerms[key] ||
-            data[key].toString().toLowerCase().includes(searchTerms[key]);
-          i++;
+          let key = x.toLowerCase();
+          if (key) {
+            retValue[i] =
+              !searchTerms[key] ||
+              data[key]
+                .toString()
+                .toLowerCase()
+                .includes(searchTerms[key].toString().toLowerCase());
+            i++;
+          }
         });
-      //console.log(retValue);
-      let a =
-        !searchTerms.position ||
-        data.position.toString().toLowerCase().includes(searchTerms.position);
-      //console.log(a);
-      let b =
-        !searchTerms.name ||
-        data.name.toString().toLowerCase().includes(searchTerms.name);
-      //console.log(b);
-      let c =
-        !searchTerms.weight ||
-        data.weight.toString().toLowerCase().includes(searchTerms.weight);
-      //console.log(c);
-      let d =
-        !searchTerms.symbol ||
-        data.symbol.toString().toLowerCase().includes(searchTerms.symbol);
-      // console.log(d);
-
-      return retValue.reduce((x) => x);
+      return retValue.findIndex((x) => x === false) < 0;
     };
     return filterFunction;
   }
