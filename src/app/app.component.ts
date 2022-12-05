@@ -14,23 +14,85 @@ export class AppComponent {
     { field: 'name', header: 'Name' },
     { field: 'weight', header: 'Weight' },
     { field: 'symbol', header: 'Symbol' },
+    { field: 'date', header: 'Date' },
   ];
   headers: string[] = this.columns.map((x) => x.field);
   headersFilters = this.headers.map((x, i) => x + '_' + i);
   filtersModel = [];
   filterKeys = {};
   toggleFilters = false;
+  setDate = new Date();
   ELEMENT_DATA = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+    {
+      position: 1,
+      name: 'Hydrogen',
+      weight: 1.0079,
+      symbol: 'H',
+      date: this.setDate,
+    },
+    {
+      position: 2,
+      name: 'Helium',
+      weight: 4.0026,
+      symbol: 'He',
+      date: this.setDate,
+    },
+    {
+      position: 3,
+      name: 'Lithium',
+      weight: 6.941,
+      symbol: 'Li',
+      date: this.setDate,
+    },
+    {
+      position: 4,
+      name: 'Beryllium',
+      weight: 9.0122,
+      symbol: 'Be',
+      date: this.setDate,
+    },
+    {
+      position: 5,
+      name: 'Boron',
+      weight: 10.811,
+      symbol: 'B',
+      date: this.setDate,
+    },
+    {
+      position: 6,
+      name: 'Carbon',
+      weight: 12.0107,
+      symbol: 'C',
+      date: this.setDate,
+    },
+    {
+      position: 7,
+      name: 'Nitrogen',
+      weight: 14.0067,
+      symbol: 'N',
+      date: this.setDate,
+    },
+    {
+      position: 8,
+      name: 'Oxygen',
+      weight: 15.9994,
+      symbol: 'O',
+      date: this.setDate,
+    },
+    {
+      position: 9,
+      name: 'Fluorine',
+      weight: 18.9984,
+      symbol: 'F',
+      date: this.setDate,
+    },
+    {
+      position: 10,
+      name: 'Neon',
+      weight: 20.1797,
+      symbol: 'Ne',
+      date: this.setDate,
+    },
   ];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   constructor() {
